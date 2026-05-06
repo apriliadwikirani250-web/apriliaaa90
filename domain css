@@ -1,0 +1,137 @@
+```html id="simple-buket-css"
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Buket</title>
+
+<style>
+/* CSS SEDERHANA */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+}
+
+/* LOGIN */
+#login {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: pink;
+}
+
+.box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+input {
+  padding: 8px;
+  width: 200px;
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px;
+  margin-top: 10px;
+  background: crimson;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* HOME */
+#home {
+  display: none;
+}
+
+header {
+  background: crimson;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.produk {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+.card {
+  background: white;
+  margin: 10px;
+  padding: 10px;
+  width: 150px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.card img {
+  width: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="box">
+    <h3>Login</h3>
+    <input type="text" id="hp" placeholder="Nomor HP">
+    <br>
+    <button onclick="masuk()">Masuk</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home">
+  <header>
+    <h2>Toko Buket 🌸</h2>
+  </header>
+
+  <div class="produk">
+    <div class="card">
+      <img src="https://picsum.photos/150?1">
+      <p>Buket Mawar</p>
+      <button>Beli</button>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/150?2">
+      <p>Buket Wisuda</p>
+      <button>Beli</button>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/150?3">
+      <p>Buket Ulang Tahun</p>
+      <button>Beli</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function masuk(){
+  var hp = document.getElementById("hp").value;
+
+  if(hp == ""){
+    alert("Masukkan nomor HP!");
+  } else {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("home").style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
+```
