@@ -1,0 +1,82 @@
+```javascript id="buket-js-full"
+// DATA KERANJANG
+let keranjang = [];
+
+// TAMBAH PRODUK
+function tambahProduk(nama, harga){
+  keranjang.push({nama: nama, harga: harga});
+  tampilKeranjang();
+}
+
+// TAMPILKAN KERANJANG
+function tampilKeranjang(){
+  let list = document.getElementById("listKeranjang");
+  let totalText = document.getElementById("totalHarga");
+
+  list.innerHTML = "";
+  let total = 0;
+
+  keranjang.forEach((item, index) => {
+    total += item.harga;
+
+    list.innerHTML += `
+      <li>
+        ${item.nama} - Rp${item.harga}
+        <button onclick="hapusProduk(${index})">X</button>
+      </li>
+    `;
+  });
+
+  totalText.innerText = "Total: Rp" + total;
+}
+
+// HAPUS PRODUK
+function hapusProduk(index){
+  keranjang.splice(index, 1);
+  tampilKeranjang();
+}
+
+// SIMPAN PESANAN (BACKEND SEDERHANA)
+function simpanPesanan(){
+  localStorage.setItem("pesanan", JSON.stringify(keranjang));
+}
+
+// BAYAR (SIMULASI)
+function bayar(){
+  if(keranjang.length === 0){
+    alert("Keranjang kosong!");
+    return;
+  }
+
+  simpanPesanan();
+
+  alert("Pembayaran berhasil (simulasi)");
+
+  kirimWhatsApp();
+}
+
+// KIRIM KE WHATSAPP
+function kirimWhatsApp(){
+  let nomor = "6281234567890"; // GANTI NOMOR KAMU
+
+  let pesan = "Halo, saya ingin pesan:%0A";
+
+  keranjang.forEach(item => {
+    pesan += `- ${item.nama} (Rp${item.harga})%0A`;
+  });
+
+  let url = `https://wa.me/${nomor}?text=${pesan}`;
+
+  window.open(url, "_blank");
+}
+
+// LOAD DATA (JIKA ADA)
+window.onload = function(){
+  let data = localStorage.getItem("pesanan");
+
+  if(data){
+    keranjang = JSON.parse(data);
+    tampilKeranjang();
+  }
+}
+```
